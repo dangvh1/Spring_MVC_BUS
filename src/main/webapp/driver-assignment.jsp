@@ -10,63 +10,56 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        .nav{
-            width: 100%;
-            height: 300px;
-            background-color: blueviolet;
-        }
-        .button{
-            width: 246px;
-            height: 60px;
-        }
-
-
+        /*.nav{*/
+        /*    width: 100%;*/
+        /*    height: 300px;*/
+        /*    background-color: blueviolet;*/
+        /*}*/
+        /*.button{*/
+        /*    width: 246px;*/
+        /*    height: 60px;*/
+        /*}*/
     </style>
 </head>
 <body>
-<div class="nav">
-    <h2 style="text-align: center; padding-top: 115px;">BUS DRIVER ASSIGNMENT <br>
-    Spring MVC
-    </h2>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: burlywood" >
+        <a class="navbar-brand" href="#">Bus</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./driver-list">Driver</a>
+                        <a class="dropdown-item" href="./busline-list">Busline</a>
+                        <a class="dropdown-item" href="./driver-assignment">Assignment</a>
+                    </div>
+                </li>
+            </ul>
+            <form action="/driver-find/name" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
 
-    <div style="display: flex; padding-top: 78px">
-        <div>
-            <form:form action="./driver-list" method="GET">
-                <button class="button" type="submit">Danh Sách Lái Xe</button>
-            </form:form>
-        </div>
-        <div>
-            <form:form action="./busline-list" method="GET">
-                <button class="button" type="submit">Danh Sách Tuyến Đường Đang Chạy</button>
-            </form:form>
-
-        </div>
-        <div>
-            <form:form action="" method="GET">
-                <button class="button" type="submit">Danh Sách Phân Công Lái Xe </button>
-            </form:form>
-        </div>
-        <div>
-            <form:form action="./buslines" method="GET">
-                <button class="button" type="submit">Nhập Danh Sách Tuyến Đường</button>
-            </form:form>
-        </div>
-        <div>
-            <form:form action="./drivers" method="GET">
-                <button class="button" type="submit">Nhập Danh Sách Lái Xe</button>
-            </form:form>
-        </div>
-
-        <div>
-            <form:form action="./assignment-list" method="GET">
-                <button class="button" type="submit">Nhập Danh Sách Phân Công Lái Xe</button>
-            </form:form>
-        </div>
-    </div>
 </div>
-
-
+<div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d1269.9532185775445!2d105.78306397425581!3d21.032135949260983!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1646636843214!5m2!1svi!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
 
 </body>
 </html>

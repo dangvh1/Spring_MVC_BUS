@@ -31,4 +31,7 @@ public class DriverService {
     public Driver getById(int id){
         return driverIml.getDriverbyID(id);
     }
+    public Driver findByName(String name){
+        return driverIml.getDriverbyName(name);
+    }
 }

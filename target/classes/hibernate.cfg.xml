@@ -4,6 +4,7 @@
 
 <hibernate-configuration>
     <session-factory>
+
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
         <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
@@ -22,5 +23,6 @@
 
         <mapping class="springMVC.entity.Driver"/>
         <mapping class="springMVC.entity.Busline"/>
+        <mapping class="springMVC.entity.Assignment"/>
     </session-factory>
 </hibernate-configuration>

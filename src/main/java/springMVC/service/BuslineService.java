@@ -31,4 +31,7 @@ public class BuslineService {
     public Busline getById(int id){
         return buslineDAO.getBuslineID(id);
     }
+    public Busline getByName(String name){
+        return buslineDAO.getBuslinebyName(name);
+    }
 }

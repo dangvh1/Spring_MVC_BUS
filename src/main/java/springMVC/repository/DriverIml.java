@@ -25,18 +25,30 @@ public class DriverIml {
     }
 
     public Driver getDriverbyID(int id){
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Driver driver=null;
+        try {
             session.beginTransaction();
-            Query<Driver> query = session.createQuery("from Driver where id = :p_driver_id");
-            query.setParameter("p_driver_id", id);
-            Driver driver = query.getSingleResult();
+            driver = session.load(Driver.class, id);
             session.getTransaction().commit();
             return driver;
-        }catch (Exception e){
-            e.printStackTrace();
-            logger.error(e);
+        } catch (Exception e) {
+            session.getTransaction().rollback();
         }
-        return null;
+        return driver;
+    }
+    public Driver getDriverbyName(String name){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Driver driver=null;
+        try {
+            session.beginTransaction();
+            driver = session.load(Driver.class, name);
+            session.getTransaction().commit();
+            return driver;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
+        return driver;
     }
 
 

@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import springMVC.entity.Busline;
+import springMVC.entity.Driver;
 import springMVC.util.HibernateUtil;
 
 import java.util.List;
@@ -24,10 +25,23 @@ public class BuslineIml {
     }
 
     public Busline getBuslineID(int id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Busline busline =null;
+        try {
+            session.beginTransaction();
+            busline = session.load(Busline.class, id);
+            session.getTransaction().commit();
+            return busline;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
+        return busline;
+    }
+    public Busline getBuslinebyName(String name){
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
-            Query<Busline> query = session.createQuery("from Busline where id = :p_busline_id");
-            query.setParameter("p_busline_id", id);
+            Query<Busline> query = session.createQuery("from Busline where buslineName = :p_busline_name");
+            query.setParameter("p_busline_name", name);
             Busline busline = query.getSingleResult();
             session.getTransaction().commit();
             return busline;

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import springMVC.service.DriverService;
 
 
+import javax.ws.rs.PathParam;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,7 +63,12 @@ public class DriverController {
         modelMap.addAttribute("updateFail", true);
         return "redirect:/";
     }
-
+    @RequestMapping(value = "/driver-find/name", method = RequestMethod.GET)
+    public ModelAndView findDriverByID(@RequestParam String name) {
+        ModelAndView modelAndView = new ModelAndView("driver-list");
+        modelAndView.addObject("object",driverService.findByName(name));
+        return modelAndView;
+    }
 
     @ModelAttribute("driverlever")
     public Map<String, String> getDriverlever() {
