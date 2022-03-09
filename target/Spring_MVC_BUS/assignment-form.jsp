@@ -56,10 +56,7 @@
 <body>
 
 <script>
-    const insertFail = location.search.split('insertFail=')[1]
-    if (insertFail) {
-        alert("Thêm mới thất bại");
-    }
+
 </script>
 
 <div>

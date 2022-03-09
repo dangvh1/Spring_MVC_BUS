@@ -1,5 +1,6 @@
 package springMVC.controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import springMVC.entity.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,14 @@ public class DriverController {
         return "driver-list";
     }
 
+    @RequestMapping(value = "/driver-list-search", method = RequestMethod.GET)
+    public String getListDriver(@RequestParam String name, ModelMap modelMap) {
+
+        modelMap.put("drivers", driverService.findByName(name));
+        System.out.println(name);
+        return "driver-list";
+    }
+
 
     @GetMapping(value = "/driver-remove/{id}")
     public String removeDriver(@PathVariable("id") int id, ModelMap modelMap) {
@@ -63,11 +72,9 @@ public class DriverController {
         modelMap.addAttribute("updateFail", true);
         return "redirect:/";
     }
-    @RequestMapping(value = "/driver-find/name", method = RequestMethod.GET)
-    public ModelAndView findDriverByID(@RequestParam String name) {
-        ModelAndView modelAndView = new ModelAndView("driver-list");
-        modelAndView.addObject("object",driverService.findByName(name));
-        return modelAndView;
+    @RequestMapping(value = "/driver-find", method = RequestMethod.GET)
+    public String findDriverByName(@RequestParam String search,ModelMap modelMap ) {
+        return "redirect:/driver-list-search"+"?name="+search;
     }
 
     @ModelAttribute("driverlever")
