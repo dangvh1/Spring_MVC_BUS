@@ -129,7 +129,7 @@
             </form:select>
         </div>
         <div class="form-group">
-            <button id="save-button" type="submit" disabled >Save</button>
+            <button id="save-button" type="submit" >Save</button>
         </div>
 
     </root>
