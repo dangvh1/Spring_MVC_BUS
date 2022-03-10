@@ -30,12 +30,14 @@ public class AssignmentService {
             return " So luot di khong qua 15 luot";
         }
     }
-    public void updateDriver(Assignment assignment) {
-
-        assignmentIml.update(assignment);
+    public boolean updateAssignment(Assignment assignment) {
+        return assignmentIml.update(assignment);
     }
     public void removeAssignment(int id){
         assignmentIml.delete(id);
+    }
+    public Assignment getById(int id){
+        return assignmentIml.findById(id);
     }
 
 

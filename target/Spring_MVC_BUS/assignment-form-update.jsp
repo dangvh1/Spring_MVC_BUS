@@ -45,7 +45,7 @@
             padding-left: 5px;
         }
         #distance{
-            margin-left: 13px;
+            margin-left: 28px;
         }
         #stopNumber{
             margin-left: 19px;
@@ -56,10 +56,7 @@
 <body>
 
 <script>
-    const insertFail = location.search.split('insertFail=')[1]
-    if (insertFail) {
-        alert("Thêm mới thất bại");
-    }
+
 </script>
 
 <div>
@@ -92,24 +89,32 @@
         </div>
     </nav>
 </div>
+<div>
+    <h3 style="text-align: center">Phân Công Cho Lái Xe Đã Chọn</h3>
+</div>
 
-<form:form id="form" action="./busline" method="POST" cssStyle="margin-top: 33px;">
+<form:form id="form" cssStyle="margin-top: 70px;" action="./${command.id}" method="POST">
     <root>
-        <div class="form-group">
-            <form:label cssStyle="margin-left: -17px;" path="buslineName">Tên Tuyến Đường</form:label>
-            <form:input path="buslineName"/>
+        <h6 style="text-align: center;">Tên Lái Xe</h6>
+        <div class="form-group" style="background-color: cadetblue;">
+            <input hidden name="driver_id" value="${command.driver.id}"/>
+            <td>${command.driver.name}</td>
             <br/>
         </div>
         <div class="form-group">
-            <form:label cssStyle="padding-left: 27px;" path="distance">Khoảng Cách</form:label>
-            <form:input path="distance"/>
-            <a>km</a>
+            <h6>Tên Tuyến Đường</h6>
+            <select path="busline_id" id="busline" name="busline_id" style="border-radius: 5px;
+                                                                   padding: 10px 100px 2px 20px;">
+                <c:forEach var="busline" items="${buslines}">
+                    <option value="${busline.id}">${busline.buslineName}</option>
+                </c:forEach>
+            </select>
             <br/>
         </div>
+
         <div class="form-group">
-            <form:label cssStyle="margin-left: -11px;" path="stopNumber">Số Điểm Dừng</form:label>
-            <form:input path="stopNumber"/>
-            <br/>
+            <h6>Số Lượt đi</h6>
+            <input type="number" name="busLineSum" id="buslinesum" path="buslinesum" value="${command.busLineSum}" placeholder="Số lượt đi không quá 15" style="width: 204px;">
         </div>
         <div class="form-group">
             <button id="save-button" type="submit">Save</button>

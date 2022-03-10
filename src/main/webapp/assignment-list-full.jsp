@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/">Home <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -48,9 +48,9 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="./driver-list">Driver</a>
-                        <a class="dropdown-item" href="./busline-list">Busline</a>
-                        <a class="dropdown-item" href="./driver-assignment">Assignment</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/driver-list">Driver</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/busline-list">Busline</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/driver-assignment">Assignment</a>
                     </div>
                 </li>
             </ul>
@@ -89,6 +89,7 @@
             <td>${assignment.busLineSum}</td>
             <td>
                 <button><a href="/Spring_MVC_BUS_war/remove-assignment/${assignment.id}">Delete</a></button>
+                <button><a href="/Spring_MVC_BUS_war/update-assignment/${assignment.id}">Update</a></button>
             </td>
         </tr>
     </c:forEach>

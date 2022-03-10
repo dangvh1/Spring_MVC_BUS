@@ -24,7 +24,6 @@ public class DriverService {
     }
 
     public boolean updateDriver(Driver driver) {
-
         return driverIml.updateDriver(driver);
     }
 

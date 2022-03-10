@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import springMVC.DTO.AssignmentDTO;
 import springMVC.entity.Assignment;
+import springMVC.entity.Driver;
 import springMVC.service.AssignmentService;
 import springMVC.service.BuslineService;
 import springMVC.service.DriverService;
@@ -28,7 +29,7 @@ public class DriverAssignment {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView HOME() {
-        return new ModelAndView("driver-assignment", "command", new DriverAssignment());
+        return new ModelAndView("driver-assignment-home", "command", new DriverAssignment());
     }
 
     @RequestMapping(value = "/driver-assignment", method = RequestMethod.GET)
@@ -62,6 +63,22 @@ public class DriverAssignment {
             return "redirect:/driver-assignment";
         }
         return "redirect:/message"+"?message="+message;
+    }
+
+    @RequestMapping(value = "/update-assignment/{id}", method = RequestMethod.GET)
+    public ModelAndView viewUpdate(@PathVariable("id") int id, Model model) {
+        Assignment assignment = assignmentService.getById(id);
+        model.addAttribute("buslines",buslineService.getListBusline());
+        return new ModelAndView("assignment-form-update", "command", assignment);
+    }
+
+    @RequestMapping(value = "/update-assignment/{id}", method = RequestMethod.POST)
+    public String updateAssignment(@ModelAttribute("command") Assignment assignment, ModelMap modelMap) {
+        if (assignmentService.updateAssignment(assignment)) {
+            return "redirect:/driver-assignment";
+        }
+        modelMap.addAttribute("updateFail", true);
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/remove-assignment/{id}", method = RequestMethod.GET)
