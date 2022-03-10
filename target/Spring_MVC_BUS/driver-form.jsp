@@ -65,50 +65,6 @@
 <body>
 
 <script>
-    $(document).ready(function () {
-        let id = 0;
-        let list = [];
-        let isEdit = true;
-        let index = -1
-        var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-        var re = /^[a-zA-Z\w\W !@#\$%\^\&*\)\(+=._-]{1,50}$/g;
-
-        $("#save-button").click(function () {
-            const name = $("#name").val();
-            const address = $("#address").val();
-            const phoneNumber = $("#phoneNumber").val();
-            const hometown = $("#hometown").val();
-            if (name == "" || address == "" || phoneNumber == "") {
-                alert("Nhập thiếu hoặc nhập sai! vui lòng kiểm tra lại");
-                isEdit = false;
-                return 0;
-            }
-            if (name !== '') {
-                if (re.test(name) == false) {
-                    alert("Tên không hợp lệ, Nhập lại")
-                    isEdit = false;
-                    return 0;
-                } else {
-                    isEdit = true;
-                    alert("tên hợp lệ")
-                }
-            }
-            if (phoneNumber !== '') {
-                if (vnf_regex.test(phoneNumber) == false) {
-                    alert("số điện thoại không đúng định dạng, Nhập lại");
-                    isEdit = false;
-                    return 0;
-                } else {
-                    isEdit = true;
-                    alert("số điện thoại hợp lệ");
-                }
-            }
-            if (isEdit) {
-                $("#save-button").prop('disabled', true);
-            }
-
-        });
-    });
 
 </script>
 

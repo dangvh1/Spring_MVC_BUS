@@ -95,12 +95,14 @@
 
 <form:form id="form" cssStyle="margin-top: 70px;" action="${pageContext.request.contextPath}/assignment-create" method="POST">
     <root>
-        <div class="form-group">
+        <h6 style="text-align: center;">Tên Lái Xe</h6>
+        <div class="form-group" style="background-color: cadetblue;">
             <input hidden name="driver_id" value="${driver.id}"/>
                 <td>${driver.name}</td>
             <br/>
         </div>
         <div class="form-group">
+            <h6>Tên Tuyến Đường</h6>
             <select path="busline_id" id="busline" name="busline_id" style="border-radius: 5px;
                                                                    padding: 10px 100px 2px 20px;">
                 <c:forEach var="busline" items="${buslines}">
@@ -111,7 +113,8 @@
         </div>
 
         <div class="form-group">
-            <input type="number" name="busLineSum" id="buslinesum" path="buslinesum">
+            <h6>Số Lượt đi</h6>
+            <input type="number" name="busLineSum" id="buslinesum" path="buslinesum" placeholder="Số lượt đi không quá 15" style="width: 204px;">
         </div>
         <div class="form-group">
             <button id="save-button" type="submit">Save</button>

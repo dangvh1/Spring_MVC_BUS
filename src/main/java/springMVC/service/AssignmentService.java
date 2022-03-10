@@ -21,9 +21,14 @@ public class AssignmentService {
         return assignmentIml.getAll();
     }
 
-    public boolean assignmentDriver(Assignment assignment) {
+    public String assignmentDriver(Assignment assignment) {
+        if(assignment.getBusLineSum() <= 15){
+            assignmentIml.addAssignment(assignment);
+            return "success";
 
-        return assignmentIml.addAssignment(assignment);
+        }else {
+            return " So luot di khong qua 15 luot";
+        }
     }
     public void updateDriver(Assignment assignment) {
 

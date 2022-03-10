@@ -12,6 +12,8 @@ import springMVC.service.AssignmentService;
 import springMVC.service.BuslineService;
 import springMVC.service.DriverService;
 
+import java.util.Objects;
+
 @Controller
 @RequestMapping("/")
 public class DriverAssignment {
@@ -51,19 +53,27 @@ public class DriverAssignment {
     @RequestMapping(value = "/assignment-create", method = RequestMethod.POST)
     public String viewAdd(@ModelAttribute("assignmentDTO") AssignmentDTO assignmentDTO) {
         Assignment assignment = new Assignment();
-
         assignment.setDriver(driverService.getById(assignmentDTO.getDriver_id()));
         assignment.setBusline(buslineService.getById(assignmentDTO.getBusline_id()));
         assignment.setBusLineSum(assignmentDTO.getBusLineSum());
-        assignmentService.assignmentDriver(assignment);
-
-        return "redirect:/driver-assignment";
+        String message = assignmentService.assignmentDriver(assignment);
+        System.out.println(message);
+        if(Objects.equals(message, "success")){
+            return "redirect:/driver-assignment";
+        }
+        return "redirect:/message"+"?message="+message;
     }
 
     @RequestMapping(value = "/remove-assignment/{id}", method = RequestMethod.GET)
     public String deleteAssignment(@PathVariable("id") int id) {
         assignmentService.removeAssignment(id);
         return "redirect:/driver-assignment";
+    }
+
+    @RequestMapping(value = "/message", method = RequestMethod.GET)
+    public String showResponse(@RequestParam String message,ModelMap model) {
+        model.put("message", message);
+        return "message";
     }
 
 }
