@@ -41,13 +41,16 @@ public class AssignmentIml {
     }
     public boolean update(Assignment assignment) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            System.out.println(assignment);
             session.beginTransaction();
             session.update(assignment);
             session.getTransaction().commit();
+            System.out.println("true");
             return true;
         } catch (HibernateException e) {
             logger.error(e);
         }
+        System.out.println("false");
         return false;
     }
     public void delete(int id) {

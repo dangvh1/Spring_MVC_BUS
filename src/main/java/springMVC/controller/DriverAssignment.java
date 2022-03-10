@@ -73,7 +73,13 @@ public class DriverAssignment {
     }
 
     @RequestMapping(value = "/update-assignment/{id}", method = RequestMethod.POST)
-    public String updateAssignment(@ModelAttribute("command") Assignment assignment, ModelMap modelMap) {
+    public String updateAssignment(@ModelAttribute("command") AssignmentDTO assignmentDTO, ModelMap modelMap) {
+        Assignment assignment = new Assignment();
+        assignment.setId(assignmentDTO.getId());
+        assignment.setDriver(driverService.getById(assignmentDTO.getDriver_id()));
+        assignment.setBusline(buslineService.getById(assignmentDTO.getBusline_id()));
+        assignment.setBusLineSum(assignmentDTO.getBusLineSum());
+        System.out.println(assignmentDTO);
         if (assignmentService.updateAssignment(assignment)) {
             return "redirect:/driver-assignment";
         }
